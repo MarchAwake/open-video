@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.marchawake.server.mapper.custom.CustomUserMapper" >
+
+    <!--依据用户ID获取角色IDS-->
+    <select id="findRoleIds" resultType="java.lang.String">
+        select role_id
+        from role_user ru
+        where ru.user_id = #{userId}
+    </select>
+
+    <!--依据角色ID获取资源IDS 去重复-->
+    <select id="findResourceIds" resultType="java.lang.String">
+        select distinct rr.resource_id
+        from role_resource rr
+        <where>
+            role_id in
+            <foreach open="(" separator="," close=")" collection="roleIds" item="roleId">
+                #{roleId}
+            </foreach>
+        </where>
+    </select>
+
+    <!--依据角色ID获取资源数据-->
+    <select id="findResources" resultType="cn.marchawake.server.dto.ResourceDto">
+        select r.id, r.name, r.page, r.request, r.parent
+        from resource r
+        <where>
+            id in
+            <foreach open="(" separator="," close=")" collection="resourceIds" item="id">
+                #{id}
+            </foreach>
+        </where>
+        order by r.id asc
+    </select>
+
+</mapper>

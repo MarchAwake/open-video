@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: business
+server:
+  port: 18002
+  servlet:
+    context-path: /business
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9000/eureka/
+
+

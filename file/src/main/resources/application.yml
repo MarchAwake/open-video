@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: file
+  servlet:
+    multipart:
+      max-file-size: 1GB
+      max-request-size: 1GB
+server:
+  port: 18003
+  servlet:
+    context-path: /file
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9000/eureka/
+
+file:
+  path: /file/
+  domain: https://www.marchawake.cn/api/file/static/
+
+# oss
+oss:
+  accessKeyId: LTAI4G3JfA4Lit64dbfTsy99
+  accessKeySecret: XWhIfcGDgqHTNhnej6qXCYlNO6Ysih
+  endpoint: https://oss-cn-shenzhen.aliyuncs.com/
+  domain: https://march-awake.oss-cn-shenzhen.aliyuncs.com/
+  bucket: march-awake
+
+# vod
+vod:
+  accessKeyId: LTAI4FyWWDUnQq9BgzYuvdEk
+  accessKeySecret: VsnrvULJnCDLUvDuyctZbxlY4W6MZ9
+
+
+
